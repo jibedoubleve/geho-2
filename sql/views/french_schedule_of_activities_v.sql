@@ -4,6 +4,7 @@
 drop view if exists french_schedule_of_activities_v;
 create view french_schedule_of_activities_v as
     select week_nr 
+         , week_nr || day_of_week || is_morning as schedule_code
          , date((select strftime('%Y-%m-%d', value) from db_setting where key = 'date_to_display'), '+' || sa.day_of_week || ' day') as cur_date        
          , case sa.day_of_week
             when 0 then 'Lundi'

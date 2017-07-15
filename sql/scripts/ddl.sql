@@ -13,10 +13,8 @@ create table educator (
 	last_name   text,
 	is_trainee  integer check (is_trainee = 0 or is_trainee = 1),
 	team_id     integer,
-	activity_id integer,
 	constraint educator_pk primary key (id)
 	foreign key (team_id) references team(id)
-	foreign key (activity_id) references activity(id)
 );
 -----------------------------------------------------
 drop table if exists recipient;
@@ -25,10 +23,8 @@ create table recipient (
 	first_name  text,
 	last_name   text,
 	team_id     integer,
-	activity_id integer,
 	constraint recipient_pk primary key (id)
 	foreign key (team_id) references team(id)
-	foreign key (activity_id) references activity(id)
 );
 -----------------------------------------------------
 drop table if exists team;
@@ -85,4 +81,24 @@ create table absence_recipient(
 	to_date      date,
 	constraint absence_recipient_pk primary key (id)
 	foreign key (recipient_id) references recipient(id)
+);
+-----------------------------------------------------
+drop table if exists recipient_to_activity;
+create table recipient_to_activity(
+	id           integer,
+	recipient_id integer,
+	activity_id  integer,
+	constraint recipient_to_activity_pk primary key (id)
+	foreign key (recipient_id) references recipient(id)
+	foreign key (activity_id) references activity(id)
+);
+-----------------------------------------------------
+drop table if exists educator_to_activity;
+create table educator_to_activity(
+	id          integer,
+	educator_id integer,
+	activity_id integer,
+	constraint educator_to_activity_pk primary key (id)
+	foreign key (educator_id) references educator(id)
+	foreign key (activity_id) references activity(id)
 );

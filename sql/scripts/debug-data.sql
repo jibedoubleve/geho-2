@@ -2,38 +2,58 @@
  * DB_SETTING
  */
 delete from db_setting;
-insert into db_setting (key, value) values ('date_to_display', date('2017-01-01'));
+insert into db_setting (key, value) values ('date_to_display', date('2017-01-02'));
 /******************************************************************************
  * EDUCATOR
  */
 delete from educator;
-insert into educator (id, first_name, last_name, is_trainee, team_id, activity_id) values (1, 'Mario' , 'Bross'    , 0, 1, 1);
-insert into educator (id, first_name, last_name, is_trainee, team_id, activity_id) values (2, 'Luidgi', 'Marcli'   , 0, 1, 1);
-insert into educator (id, first_name, last_name, is_trainee, team_id, activity_id) values (3, 'Marcel', 'Debel'    , 0, 1, 1);
-insert into educator (id, first_name, last_name, is_trainee, team_id, activity_id) values (4, 'Lame'  , 'Entation' , 1, 2, 2);
+insert into educator (id, first_name, last_name, is_trainee, team_id) values (1, 'Mario' , 'Bross'    , 0, 1);
+insert into educator (id, first_name, last_name, is_trainee, team_id) values (2, 'Luidgi', 'Marcli'   , 0, 1);
+insert into educator (id, first_name, last_name, is_trainee, team_id) values (3, 'Marcel', 'Debel'    , 0, 1);
+insert into educator (id, first_name, last_name, is_trainee, team_id) values (4, 'Lame'  , 'Entation' , 1, 2);
 insert into educator (id, first_name, last_name, is_trainee) values (5, 'Jessica', 'Potempoche', 1);
-insert into educator (id, first_name, last_name, is_trainee) values (6, 'Alain'  , 'Térieure'  , 0);
+insert into educator (id, first_name, last_name, is_trainee) values (6, 'Alain'  , 'Terieure'  , 0);
+/******************************************************************************
+ * EDUCATOR TO ACTIVITY
+ */
+ delete from educator_to_activity;
+ insert into educator_to_activity(educator_id, activity_id) values(1, 1);
+ insert into educator_to_activity(educator_id, activity_id) values(1, 2);
+ insert into educator_to_activity(educator_id, activity_id) values(2, 1);
+ insert into educator_to_activity(educator_id, activity_id) values(3, 1);
+ insert into educator_to_activity(educator_id, activity_id) values(4, 2);
 /******************************************************************************
  * RECIPIENT
  */
  delete from recipient;
-insert into recipient (first_name, last_name, team_id, activity_id) values ('Robert'  , 'Dupont'      , 1, 1);
-insert into recipient (first_name, last_name, team_id, activity_id) values ('Marcel'  , 'Decourcelles', 1, 2);
-insert into recipient (first_name, last_name, team_id, activity_id) values ('Martine' , 'Alamer'      , 1, 2);
-insert into recipient (first_name, last_name, team_id, activity_id) values ('Marc'    , 'Esophie'     , 2, 2);
-insert into recipient (first_name, last_name, team_id, activity_id) values ('Tintin'  , 'Emilou'      , 2, 2);
-insert into recipient (first_name, last_name, team_id, activity_id) values ('Goldorak', 'Lerobo'      , 2, 1);
+insert into recipient (id, first_name, last_name, team_id) values (1, 'Robert'  , 'Dupont'      , 1);-- 1
+insert into recipient (id, first_name, last_name, team_id) values (2, 'Marcel'  , 'Decourcelles', 1);-- 2
+insert into recipient (id, first_name, last_name, team_id) values (3, 'Martine' , 'Alamer'      , 1);-- 2
+insert into recipient (id, first_name, last_name, team_id) values (4, 'Marc'    , 'Esophie'     , 2);-- 2
+insert into recipient (id, first_name, last_name, team_id) values (5, 'Tintin'  , 'Emilou'      , 2);-- 2
+insert into recipient (id, first_name, last_name, team_id) values (6, 'Goldorak', 'Lerobo'      , 2);-- 1
+/******************************************************************************
+ * RECIPIENT TO ACTIVITY
+ */
+ delete from recipient_to_activity;
+ insert into recipient_to_activity(recipient_id, activity_id) values(1, 1);
+ insert into recipient_to_activity(recipient_id, activity_id) values(1, 2);
+ insert into recipient_to_activity(recipient_id, activity_id) values(2, 2);
+ insert into recipient_to_activity(recipient_id, activity_id) values(3, 2);
+ insert into recipient_to_activity(recipient_id, activity_id) values(4, 2);
+ insert into recipient_to_activity(recipient_id, activity_id) values(5, 2);
+ insert into recipient_to_activity(recipient_id, activity_id) values(6, 1);
 /******************************************************************************
  * TEAM
  */
 delete from team;
-insert into team (id, name) values (1, 'Groupe psy');
-insert into team (id, name) values (2, 'Groupe psy');
-insert into team (id, name) values (3, 'Groupe alpha');
-insert into team (id, name) values (4, 'Groupe alpha');
-insert into team (id, name) values (5, 'Groupe zeta');
+insert into team (id, name) values (1, 'Groupe alpha');
+insert into team (id, name) values (2, 'Groupe beta');
+insert into team (id, name) values (3, 'Groupe gamma');
+insert into team (id, name) values (4, 'Groupe delta');
+insert into team (id, name) values (5, 'Groupe epsilon');
 insert into team (id, name) values (6, 'Groupe zeta');
-insert into team (id, name) values (7, 'Groupe omega');
+insert into team (id, name) values (7, 'Groupe eta');
 /******************************************************************************
  * SCHEDULED TEAM
  */
@@ -60,8 +80,8 @@ insert into team (id, name) values (7, 'Groupe omega');
  * ACTIVITY
  */
 delete from activity;
-insert into activity (id, name) values (1, 'Vélo 1');
-insert into activity (id, name) values (2, 'Vélo 2');
+insert into activity (id, name) values (1, 'Velo 1');
+insert into activity (id, name) values (2, 'Velo 2');
 insert into activity (id, name) values (3, 'Course 1');
 insert into activity (id, name) values (4, 'Course 2');
 insert into activity (id, name) values (5, 'Tennis 1');

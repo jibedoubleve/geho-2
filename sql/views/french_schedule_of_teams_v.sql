@@ -4,6 +4,7 @@
 drop view if exists french_schedule_of_teams_v;
 create view french_schedule_of_teams_v as
     select st.week_nr 
+         , week_nr || day_of_week || is_morning as schedule_code
          , date((select strftime('%Y-%m-%d', value) from db_setting where key = 'date_to_display'), '+' || day_of_week || ' day') as cur_date          
          , case st.day_of_week
              when 0 then 'Lundi'
@@ -36,7 +37,7 @@ create view french_schedule_of_teams_v as
                 and id not in (-- remove educators that are booked in an activity at this moment
                     select e.id
                     from scheduled_activity sa
-                    inner join educator e on e.activity_id = sa.activity_id
+                    inner join educator_to_activity e on e.activity_id = sa.activity_id
                     where sa.week_nr     = st.week_nr
                       and sa.day_of_week = st.day_of_week
                       and sa.is_morning  = st.is_morning
@@ -60,7 +61,7 @@ create view french_schedule_of_teams_v as
                 and id not in ( -- remove recipients that are booked in an activity at this time
                     select r.id
                     from scheduled_activity sa
-                    inner join recipient r on r.activity_id = sa.activity_id
+                    inner join recipient_to_activity r on r.activity_id = sa.activity_id
                     where sa.week_nr     = st.week_nr
                       and sa.day_of_week = st.day_of_week
                       and sa.is_morning  = st.is_morning
